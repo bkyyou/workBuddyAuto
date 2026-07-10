@@ -124,12 +124,21 @@ router.get('/users/:id', async (ctx) => {
     data: { id: userId, name: '张三', age: 20 }
   };
 });
+// 定义一个带参数的 GET 接口（如获取用户信息）
+router.get('/test', async (ctx) => {
+  const userId = ctx.params.id;
+  ctx.body = {
+    status: 200,
+    message: '获取用户信息成功',
+    data: '111'
+  };
+});
 
 // 将路由注册到 Koa 实例上
 app.use(router.routes());
 app.use(router.allowedMethods());
 
 // 启动服务器
-app.listen(3000, () => {
+app.listen(3000, '0.0.0.0', () => {
   console.log('Server is running on http://localhost:3000');
 });
